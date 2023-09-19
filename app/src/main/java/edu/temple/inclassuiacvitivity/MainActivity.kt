@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val displayTextView = findViewById<TextView>(R.id.textDisplay)
 
         /* Step 1: Populate this array */
-        val numberArray = Array(100) {(it + 1) * 5}
+        val numberArray = Array(20) {(it + 1) * 5}
 
 
         /* Step 2: Create adapter to display items from array in Spinner */
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = object:OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 p0?.run {
-                    val size = numberArray.get(p2).toFloat()
+                    val size = numberArray[p2].toFloat()
                     displayTextView.textSize = size
                 }
             }
