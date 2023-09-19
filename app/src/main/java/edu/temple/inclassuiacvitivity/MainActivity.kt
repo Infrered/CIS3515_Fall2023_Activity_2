@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.core.view.get
+import java.nio.file.attribute.FileOwnerAttributeView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val displayTextView = findViewById<TextView>(R.id.textDisplay)
 
         /* Step 1: Populate this array */
-        val numberArray = Array(100) {it *(1 + 5)}
+        val numberArray = Array(100) {(it + 1) * 5}
 
 
         /* Step 2: Create adapter to display items from array in Spinner */
@@ -25,7 +27,19 @@ class MainActivity : AppCompatActivity() {
 
 
         // Step 3: Change TextView's text size to the number selected in the Spinner */
-        //spinner.onItemSelectedListener = object:
+        spinner.onItemSelectedListener = object:OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                p0?.run {
+                    val size = numberArray.get(p2).toFloat()
+                    displayTextView.textSize = size
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
 
     }
 }
