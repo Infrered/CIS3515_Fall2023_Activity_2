@@ -20,20 +20,28 @@ class FontSizeAdapter(private val context : Context, private val fontSizes :Arra
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val textView : TextView
+        return getDropDownView(p0, p1, p2). apply {
+            (this as TextView).textSize = 22f
 
-        if(p1 != null) {
-            textView = p1 as TextView
-        } else {
-            textView = TextView(context)
         }
 
-        textView.text = fontSizes[p0].toString()
-        textView.textSize = fontSizes[p0].toFloat()
-        textView.setPadding(5,10,0,10)
+    }
+
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val textView : TextView
+
+        if(convertView != null) {
+            textView = convertView as TextView
+        } else {
+            textView = TextView(context)
+            textView.setPadding(5,10,0,10)
+        }
+
+        textView.text = fontSizes[position].toString()
+        textView.textSize = fontSizes[position].toFloat()
+
 
 
         return textView
-
     }
 }
