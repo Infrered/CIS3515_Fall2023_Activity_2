@@ -20,7 +20,13 @@ class FontSizeAdapter(private val context : Context, private val fontSizes :Arra
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val textView = TextView(context)
+        val textView : TextView
+
+        if(p1 != null) {
+            textView = p1 as TextView
+        } else {
+            textView = TextView(context)
+        }
 
         textView.text = fontSizes[p0].toString()
         textView.textSize = fontSizes[p0].toFloat()
