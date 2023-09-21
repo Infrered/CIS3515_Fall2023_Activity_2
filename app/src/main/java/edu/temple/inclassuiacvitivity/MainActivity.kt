@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = object:OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 p0?.run {
-                    val size = numberArray[p2].toFloat()
-                    displayTextView.textSize = size
+                    displayTextView.textSize = this.getItemAtPosition(p2).toString().toFloat()
                 }
             }
 
